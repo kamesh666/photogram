@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       fontFamily:{
         cupla:['Mea Culpa','cursive'],
-        secular:["Secular One","sans-serif"]
+        secular:["Secular One","sans-serif"],
+        sans:['Open Sans','sans-serif']
       }
     },
   },
