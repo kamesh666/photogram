@@ -1,8 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        cupla:['Mea Culpa','cursive'],
+        secular:["Secular One","sans-serif"]
+      }
+    },
   },
   plugins: [],
 }
