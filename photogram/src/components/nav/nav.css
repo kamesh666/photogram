@@ -1,0 +1,3 @@
+.search-bar:focus + .fa-search{
+    display: none;
+  }

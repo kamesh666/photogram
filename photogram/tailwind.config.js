@@ -8,7 +8,8 @@ module.exports = {
       fontFamily:{
         cupla:['Mea Culpa','cursive'],
         secular:["Secular One","sans-serif"],
-        sans:['Open Sans','sans-serif']
+        sans:['Open Sans','sans-serif'],
+        billabong:['billabong','sans-serif']
       }
     },
   },

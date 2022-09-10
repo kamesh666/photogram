@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+// import {bg} from '../../img/background.jpg'
 
 class Signin extends Component {
     state = {  } 
     render() { 
         return (
-           <div className="">
+           <div>
                 <section className='h-full gradient-form bg-gray-200 md:h-screen'>
                     <div className="container py-12 px-6 h-full">
                         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
@@ -15,7 +16,7 @@ class Signin extends Component {
                                         <div className="lg:w-6/12 px-4 md:px-0">
                                             <div className="md:p-12 md:mx-6">
                                                 <div className="text-center">
-                                                    <h1 className='font-cupla text-[4rem]'>Photogram</h1>
+                                                    <h1 className='font-cupla font-semibold text-[4rem]'>Photogram</h1>
                                                     <h4 class="text-md font-sans text-gray-400 mt-1 mb-12 pb-1">Sign up to see photos <br/> and videos from your friends.</h4>
                                                 </div>
                                                 <form action="" method="post">
