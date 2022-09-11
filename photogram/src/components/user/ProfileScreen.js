@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { } from 'react'
 import Navbar from '../nav/Navbar';
 import account from '../../img/account.png'
 import {faCheckCircle} from '@fortawesome/free-regular-svg-icons'
@@ -7,9 +7,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
 import bg from '../../img/bg1.avif'
 
-export default class Profile extends Component {
-  state = { }
-  render() {
+const Profile = ()=> {
+
     return (
       <div className="">
         <Navbar/>
@@ -114,4 +113,4 @@ export default class Profile extends Component {
       </div>
     );
   }
-}
+  export default Profile;

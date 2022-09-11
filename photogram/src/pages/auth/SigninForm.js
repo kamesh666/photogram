@@ -1,11 +1,25 @@
-import React, { Component } from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import {faHeart} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../firebase'
 
-class Signin extends Component {
-    state = {  } 
-    render() { 
+const Signin = ()=> {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const login = async (e)=> {
+        e.preventDefault();
+        signInWithEmailAndPassword(auth, email, password).then((authUser)=> {
+            console.log(authUser);
+        })
+        .catch((err) => {
+          alert(err.message)
+        });
+    }
+
         return (
            <div>
                 <section className='h-full gradient-form bg-gray-200 md:h-screen'>
@@ -13,38 +27,40 @@ class Signin extends Component {
                         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
                             <div className="xl:w-10/12">
                                 <div className="block bg-white shadow-lg rounded-lg">
-                                    <div class="lg:flex lg:flex-wrap g-0">
+                                    <div className="lg:flex lg:flex-wrap g-0">
                                         <div className="lg:w-6/12 px-4 md:px-0">
                                             <div className="md:p-12 md:mx-6">
                                                 <div className="text-center">
                                                     <h1 className='font-billabong font-medium text-[4rem]'>Photogram</h1>
-                                                    <h4 class="text-md font-sans text-gray-400 mt-1 mb-12 pb-1">Sign up to see photos <br/> and videos from your friends.</h4>
+                                                    <h4 className="text-md font-sans text-gray-400 mt-1 mb-12 pb-1">Sign up to see photos <br/> and videos from your friends.</h4>
                                                 </div>
                                                 <form action="" method="post">
                                                     <p className='mb-4 font-secular'>Welcome back</p>
                                                     
-                                                    <div class="mb-4">
+                                                    <div className="mb-4">
                                                         <input 
-                                                        type="text"
-                                                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                        type="email" value={email}
+                                                        className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                         id="exampleFormControlInput1"
-                                                        placeholder="Username"
+                                                        placeholder="Email Address"
+                                                        onChange={(e) => setEmail(e.target.value)}
                                                          />
                                                     </div>
-                                                    <div class="mb-4">
+                                                    <div className="mb-4">
                                                         <input 
-                                                        type="password"
-                                                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                        type="password" value={password}
+                                                        className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                         id="exampleFormControlInput1"
                                                         placeholder="password"
+                                                        onChange={(e) => setPassword(e.target.value)}
                                                          />
                                                     </div>
                                                     {/* signup button */}
                                                     <div className="space-y-4 text-center pt-1 mb-12 pb-1">
-                                                        <button className='inline-block px-6 py-2.5 hover:text-white font-medium text-xs leading-tight uppercase text-black rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3' type='button' data-mdb-ripple="true" data-mdb-ripple-color="light"
+                                                        <button onClick={login} className='inline-block px-6 py-2.5 hover:text-white font-medium text-xs leading-tight uppercase text-black rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3' type='button' data-mdb-ripple="true" data-mdb-ripple-color="light"
                                                         >Sign In</button>
-                                                        <div class="flex items-center justify-between pb-6">
-                                                        <p class="mb-0 mr-2">Don't have an account?</p>
+                                                        <div className="flex items-center justify-between pb-6">
+                                                        <p className="mb-0 mr-2">Don't have an account?</p>
                                                         <button className='inline-block px-6 py-2  text-black 
                                                         hover:text-white font-medium text-xs leading-tight uppercase rounded hover:bg-blue-700 shadow-lg focus:outline-none focus:ring-0 transition duration-150 ease-in-out ' type='button' data-mdb-ripple="true" data-mdb-ripple-color="light"
                                                         ><Link to='/signup'>Sign up</Link></button>
@@ -55,14 +71,14 @@ class Signin extends Component {
                                         </div>
                                         <div className="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
                                             <div className="text-white px-4 py-6 md:p-12 md:mx-6">
-                                            <h4 class="text-xl font-secular font-semibold mb-6">We are more than just a company</h4>
-                                            <p class="text-sm">
+                                            <h4 className="text-xl font-secular font-semibold mb-6">We are more than just a company</h4>
+                                            <p className="text-sm">
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                                                 consequat.
                                             </p>
-                                            <p className='text-sm font-medium text-white  mt-20'>© 2022 <h6 className='font-billabong text-2xl'>Photogram</h6> from <FontAwesomeIcon icon={faHeart} className='text-red-500'/> kamade</p>
+                                            <p className='text-sm font-medium text-end  text-white mt-[150px]'>© 2022 <span className='font-billabong text-2xl'>Photogram</span> from <FontAwesomeIcon icon={faHeart} className='text-red-500'/> kamade</p>
                                             </div>
                                         </div>
                                     </div>
@@ -74,6 +90,5 @@ class Signin extends Component {
            </div>
         );
     }
-}
  
 export default Signin;
