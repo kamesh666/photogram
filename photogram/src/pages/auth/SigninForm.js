@@ -1,23 +1,30 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {faHeart} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase'
+import {UserAuth} from '../../context/AuthContext'
 
 const Signin = ()=> {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState('');
+    const navigate = useNavigate()
 
-    const login = async (e)=> {
-        e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password).then((authUser)=> {
-            console.log(authUser);
-        })
-        .catch((err) => {
-          alert(err.message)
-        });
+    const {loginUser} = UserAuth();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setError('')
+        try {
+            await loginUser(email,password)
+            navigate('/profile')
+        } catch (e) {
+            alert(e.message)
+            console.log(e.message);
+        }
     }
 
         return (
@@ -34,7 +41,7 @@ const Signin = ()=> {
                                                     <h1 className='font-billabong font-medium text-[4rem]'>Photogram</h1>
                                                     <h4 className="text-md font-sans text-gray-400 mt-1 mb-12 pb-1">Sign up to see photos <br/> and videos from your friends.</h4>
                                                 </div>
-                                                <form action="" method="post">
+                                                <form onSubmit={handleSubmit} action="" method="post">
                                                     <p className='mb-4 font-secular'>Welcome back</p>
                                                     
                                                     <div className="mb-4">
@@ -57,7 +64,7 @@ const Signin = ()=> {
                                                     </div>
                                                     {/* signup button */}
                                                     <div className="space-y-4 text-center pt-1 mb-12 pb-1">
-                                                        <button onClick={login} className='inline-block px-6 py-2.5 hover:text-white font-medium text-xs leading-tight uppercase text-black rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3' type='button' data-mdb-ripple="true" data-mdb-ripple-color="light"
+                                                        <button onClick={handleSubmit} className='inline-block px-6 py-2.5 hover:text-white font-medium text-xs leading-tight uppercase text-black rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3' type='button' data-mdb-ripple="true" data-mdb-ripple-color="light"
                                                         >Sign In</button>
                                                         <div className="flex items-center justify-between pb-6">
                                                         <p className="mb-0 mr-2">Don't have an account?</p>

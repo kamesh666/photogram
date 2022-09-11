@@ -1,4 +1,4 @@
-import React, { } from 'react'
+import React from 'react'
 import Navbar from '../nav/Navbar';
 import account from '../../img/account.png'
 import {faCheckCircle} from '@fortawesome/free-regular-svg-icons'
@@ -6,8 +6,12 @@ import {faThLarge, faUser, faSquare, faHeart, faComment} from '@fortawesome/free
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
 import bg from '../../img/bg1.avif'
+import {UserAuth} from '../../context/AuthContext'
+
 
 const Profile = ()=> {
+
+  const {user} = UserAuth();
 
     return (
       <div className="">
@@ -22,8 +26,8 @@ const Profile = ()=> {
               {/* profile meta */}
               <div className="w-8/12 md:w-7/12 ml-4">
                 <div className="md:flex md:flex-wrap md:items-center mb-4">
-                  <h2 className='text-3xl inline-block font-light md:mr-2 mb-2 sm:mb-0'>
-                    ksmade
+                  <h2 className='text-2xl font-semibold md:text-xl inline-block md:mr-2 mb-2 sm:mb-0'>
+                    {user && user.email}
                   </h2>
                   {/* badge */}
                   <span className='inline-block text-blue-500 relative mr-6 text-xl transform -translate-y-2' aria-hidden="true">
@@ -37,15 +41,15 @@ const Profile = ()=> {
                   <li><span  className='font-semibold'>302</span>following</li>
                 </ul>
                 {/* user meta form */}
-                <div class="hidden md:block">
-                  <h1 class="font-semibold">Mr Travlerrr...</h1>
+                <div className="hidden md:block">
+                  <h1 className="font-semibold">Mr Travlerrr...</h1>
                   <span>Travel, Nature and Music</span>
                   <p>Lorem ipsum dolor sit amet consectetur</p>
                 </div>
 
               </div>
-              <div class="md:hidden text-sm my-2">
-                <h1 class="font-semibold">Mr Travlerrr...</h1>
+              <div className="md:hidden text-sm my-2">
+                <h1 className="font-semibold">Mr Travlerrr...</h1>
                 <span>Travel, Nature and Music</span>
                 <p>Lorem ipsum dolor sit amet consectetur</p>
               </div>
@@ -74,13 +78,14 @@ const Profile = ()=> {
                     tagged
                   </Link>
                 </li>
+                
               </ul>
 
                {/*flexbox grid  */}
-               <div class="flex flex-wrap -mx-px md:-mx-3">
+               <div className="flex flex-wrap -mx-px md:-mx-3">
 
                 {/* column */}
-                <div class="w-1/3 p-px md:px-3">
+                <div className="w-1/3 p-px md:px-3">
 
                   {/* post 1 */}
                   <Link to='/'>
@@ -93,11 +98,11 @@ const Profile = ()=> {
                     {/* overlay */}
                     <div className="overlay bg-gray-800 bg-opacity-25 w-full h-full absolute left-0 top-0 hidden">
                       <div className="flex justify-center items-center space-x-4 h-full">
-                      <span class="p-2">
+                      <span className="p-2">
                         <FontAwesomeIcon icon={faHeart}/>
                         234
                       </span>
-                      <span class="p-2">
+                      <span className="p-2">
                         <FontAwesomeIcon icon={faComment}/>
                         234
                       </span>

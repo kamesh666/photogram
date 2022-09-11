@@ -1,23 +1,28 @@
 import React, { useState } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHeart} from '@fortawesome/free-solid-svg-icons'
-import { auth } from "../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {UserAuth} from '../../context/AuthContext'
 
 const Signup = ()=> {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState('');
+    const navigate = useNavigate()
 
-    const register = async (e)=> {
-        e.preventDefault();
-        createUserWithEmailAndPassword(auth, email, password).then((authUser)=> {
-            console.log(authUser);
-        })
-        .catch((err) => {
-          alert(err.message)
-        });
+    const {createUser} = UserAuth();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setError('')
+        try {
+            await createUser(email,password)
+            navigate('/profile')
+        } catch (e) {
+            alert(e.Message)
+            console.log(e.Message);
+        }
     }
 
         return (
@@ -34,32 +39,34 @@ const Signup = ()=> {
                                                     <h1 className='font-billabong text-[4rem] font-medium'>Photogram</h1>
                                                     <h4 className="text-md font-sans text-gray-400 mt-1 mb-12 pb-1">Sign up to see photos <br/> and videos from your friends.</h4>
                                                 </div>
-                                                <form action="" method="post">
+                                                <form onSubmit={handleSubmit} action="" method="post">
                                                     <p className='mb-4 font-secular '>Sign Up for a free</p>
                                                     <div className="mb-4">
-                                                        <input 
-                                                        value={email}
-                                                        type="email"
-                                                        className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                                        id="exampleFormControlInput1"
-                                                        placeholder="Email address"
-                                                        onChange={(e) => setEmail(e.target.value)}
-                                                         />
-                                                    </div>
-                                                    <div className="mb-4">
+                                                        {/* email input */}
                                                         <input 
                                                         type="text"
                                                         className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                         id="exampleFormControlInput1"
                                                         placeholder="Fullname"
+                                                        
                                                          />
                                                     </div>
                                                     <div className="mb-4">
+                                                        {/* name input */}
                                                         <input 
-                                                        type="text"
+                                                        type="username"
                                                         className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                         id="exampleFormControlInput1"
                                                         placeholder="Username"
+                                                         />
+                                                    </div>
+                                                    <div className="mb-4">
+                                                        {/* email input */}
+                                                        <input 
+                                                        type="email" value={email}
+                                                        className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                        id="exampleFormControlInput1"
+                                                        placeholder="Email Address" onChange={(e) => setEmail(e.target.value)}
                                                          />
                                                     </div>
                                                     <div className="mb-4">
@@ -72,8 +79,8 @@ const Signup = ()=> {
                                                     </div>
                                                     {/* signup button */}
                                                     <div className="space-y-4 text-center pt-1 mb-12 pb-1">
-                                                        <button className='inline-block px-6 py-2.5 hover:text-white font-medium text-xs leading-tight uppercase text-black rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3' type='button' data-mdb-ripple="true" data-mdb-ripple-color="light"
-                                                         onClick={register}>Sign up</button>
+                                                        <button onClick={handleSubmit} className='inline-block px-6 py-2.5 hover:text-white font-medium text-xs leading-tight uppercase text-black rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3' type='button' data-mdb-ripple="true" data-mdb-ripple-color="light"
+                                                        >Sign up</button>
                                                         <div className="flex items-center justify-between pb-6">
                                                         <p className="mb-0 mr-2">Already have an account?</p>
                                                         <button className='inline-block px-6 py-2  text-black 

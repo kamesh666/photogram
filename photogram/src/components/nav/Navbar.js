@@ -1,15 +1,30 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import './nav.css'
+import {UserAuth} from '../../context/AuthContext'
 
 // font awrsome icon
-import {faSearch, faHome} from'@fortawesome/free-solid-svg-icons'
+import {faSearch, faHome, faSignOut} from'@fortawesome/free-solid-svg-icons'
 import {faMessage, faHeart, faPlusSquare, faCompass, faCircleUser} from '@fortawesome/free-regular-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
-export default class Navbar extends Component {
-  state= {}
-  render() {
+const Navbar = () => {
+	
+	const {logout} = UserAuth();
+	const navigate = useNavigate();
+  
+	const handleLogout = async() => {
+	  try 
+	  {
+		await logout();
+		navigate('/signin');
+	  }
+	  catch(e) {
+		console.log(e.message);
+	  }
+	  
+	}
+
     return(
       <div className="font-sans">
         <nav className='border-b px-4 py-2 bg-white'>
@@ -29,6 +44,7 @@ export default class Navbar extends Component {
 								<Link className='' to='/signup'><FontAwesomeIcon icon={faCompass} /></Link>
 								<Link className='' to='/signup'><FontAwesomeIcon icon={faHeart} /></Link>
 								<Link className='' to='/profile'><FontAwesomeIcon icon={faCircleUser} /></Link>
+								<button onClick={handleLogout}><Link className='' to='/profile'><FontAwesomeIcon icon={faSignOut} /></Link></button>
 								
 							</div>
 					</div>
@@ -36,5 +52,5 @@ export default class Navbar extends Component {
       </div>
     );
   }
-}
 
+  export default Navbar
