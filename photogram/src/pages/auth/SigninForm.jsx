@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-// import {bg} from '../../img/background.jpg'
+import {faHeart} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 class Signin extends Component {
     state = {  } 
@@ -16,27 +17,12 @@ class Signin extends Component {
                                         <div className="lg:w-6/12 px-4 md:px-0">
                                             <div className="md:p-12 md:mx-6">
                                                 <div className="text-center">
-                                                    <h1 className='font-cupla font-semibold text-[4rem]'>Photogram</h1>
+                                                    <h1 className='font-billabong font-medium text-[4rem]'>Photogram</h1>
                                                     <h4 class="text-md font-sans text-gray-400 mt-1 mb-12 pb-1">Sign up to see photos <br/> and videos from your friends.</h4>
                                                 </div>
                                                 <form action="" method="post">
-                                                    <p className='mb-4'>Welcome back</p>
-                                                    {/* <div class="mb-4">
-                                                        <input 
-                                                        type="email"
-                                                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                                        id="exampleFormControlInput1"
-                                                        placeholder="Email address"
-                                                         />
-                                                    </div> */}
-                                                    {/* <div class="mb-4">
-                                                        <input 
-                                                        type="text"
-                                                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                                        id="exampleFormControlInput1"
-                                                        placeholder="Fullname"
-                                                         />
-                                                    </div> */}
+                                                    <p className='mb-4 font-secular'>Welcome back</p>
+                                                    
                                                     <div class="mb-4">
                                                         <input 
                                                         type="text"
@@ -69,13 +55,14 @@ class Signin extends Component {
                                         </div>
                                         <div className="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
                                             <div className="text-white px-4 py-6 md:p-12 md:mx-6">
-                                            <h4 class="text-xl font-semibold mb-6">We are more than just a company</h4>
+                                            <h4 class="text-xl font-secular font-semibold mb-6">We are more than just a company</h4>
                                             <p class="text-sm">
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                                                 consequat.
                                             </p>
+                                            <p className='text-sm font-medium text-white  mt-20'>© 2022 <h6 className='font-billabong text-2xl'>Photogram</h6> from <FontAwesomeIcon icon={faHeart} className='text-red-500'/> kamade</p>
                                             </div>
                                         </div>
                                     </div>
