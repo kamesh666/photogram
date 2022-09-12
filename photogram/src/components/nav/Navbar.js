@@ -27,29 +27,36 @@ const Navbar = () => {
 
     return(
       <div className="font-sans">
-        <nav className='border-b px-4 py-2 bg-white'>
+        <nav className='border-b px-4 py-2 bg-gray-200'>
 
 					<div className="flex flex-wrap items-center justify-between md:justify-around">
 						{/* logo */}
 						<h1 className='font-billabong text-4xl'>Photogram</h1>
 
 						<div className="relative hidden sm:block  text-gray-500">
-							<input className='search-bar max-w-xs border rounded bg-gray-200 px-4 py-1 text-center outline-none focus:border-gray-400' type="search" placeholder="Search" id="" />
+							<input className='search-bar max-w-xs border rounded bg-white px-4 py-1 text-center outline-none focus:border-gray-400' type="search" placeholder="Search" id="" />
 							<FontAwesomeIcon className='top-0 absolute left-0 ml-12 mt-2 cursor-pointer' icon={faSearch}/>
 						</div>
-						<div className="space-x-5 sm:text-md text-xl">
-								<Link className='' to='/signin'><FontAwesomeIcon icon={faHome}/></Link>
-								<Link className='' to='/signup'><FontAwesomeIcon icon={faMessage}/></Link>
-								<Link className='' to='/signup'><FontAwesomeIcon icon={faPlusSquare} /></Link>
-								<Link className='' to='/signup'><FontAwesomeIcon icon={faCompass} /></Link>
-								<Link className='' to='/signup'><FontAwesomeIcon icon={faHeart} /></Link>
-								<Link className='' to='/profile'><FontAwesomeIcon icon={faCircleUser} /></Link>
-								<button onClick={handleLogout}><Link className='' to='/profile'><FontAwesomeIcon icon={faSignOut} /></Link></button>
+						
+					</div>
+        			</nav>
+						<div className='w-full'>
+						<section className='block border-t fixed inset-x-0 bottom-0 z-10 bg-gray-200 shadow'>
+							<div className="flex justify-center space-x-10 p-4 sm:text-md text-xl">
+								<Link className='focus:text-teal-500 hover:text-blue-700 justify-center inline-block text-center  pr-5' to='/'><FontAwesomeIcon icon={faHome}/></Link>
+								<Link className='focus:text-teal-500 hover:text-blue-700 justify-center inline-block text-center  pr-5' to='/signup'><FontAwesomeIcon icon={faMessage}/></Link>
+								<Link className='focus:text-teal-500 hover:text-blue-700 justify-center inline-block text-center   pr-5' to='/signup'><FontAwesomeIcon icon={faPlusSquare} /></Link>
+								<Link className='focus:text-teal-500 hover:text-blue-700 justify-center inline-block text-center   pr-5' to='/signup'><FontAwesomeIcon icon={faCompass} /></Link>
+								<Link className='focus:text-teal-500 hover:text-blue-700 justify-center inline-block text-center   pr-5' to='/signup'><FontAwesomeIcon icon={faHeart} /></Link>
+								<div className='antialiased flex justify-center'>
+								<Link className='focus:text-teal-500 hover:text-blue-700 justify-center inline-block text-center   pr-5' to='/profile'><FontAwesomeIcon icon={faCircleUser} /></Link>
+								</div>
+								<button onClick={handleLogout}><Link className='focus:text-teal-500 hover:text-blue-700 justify-center inline-block text-center  pr-5' to='/profile'><FontAwesomeIcon icon={faSignOut} /></Link></button>
 								
 							</div>
-					</div>
-        </nav>
-      </div>
+						</section>
+						</div>
+     				 </div>
     );
   }
 
